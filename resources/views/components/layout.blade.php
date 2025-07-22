@@ -16,20 +16,40 @@
 </head>
 
 
-<body class="bg-black font-hanken-grotesk text-white">
+<body class="font-hanken-grotesk bg-black pb-20 text-white">
     <div class="px-10">
         <nav class="flex items-center justify-between border-b border-white/10 py-4 text-white">
             <div><a href="/">
                     <img src="{{ Vite::asset('resources/images/logo.png') }}" alt=""></a>
             </div>
 
-            <div class="space-x-6 font-bold"><a href="">Jobs</a>
-                <a href="">Careers</a>
-                <a href="">Salaries</a>
-                <a href="">Companies</a>
+            <div class="space-x-6 font-bold">
+                <a href="#">Jobs</a>
+                <a href="#">Careers</a>
+                <a href="#">Salaries</a>
+                <a href="#">Companies</a>
             </div>
 
-            <div><a href="">Post a job</a></div>
+            @auth
+                <div class="flex space-x-6 font-bold">
+                    <a href="/jobs/create">Post a job</a>
+
+                    <form action="/logout" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>Log Out</button>
+                    </form>
+                </div>
+            @endauth
+
+            @guest
+
+                <div class="flex items-center space-x-6 font-bold">
+                    <a href="/jobs/create">Post a job</a>
+                    <a class="text-white/70 hover:text-white" href="/register">Register</a>
+                    <a class="text-white/70 hover:text-white" href="/login">Login</a>
+                @endguest
+
         </nav>
 
         <main class="mx-auto mt-10 max-w-[986px]">{{ $slot }}</main>

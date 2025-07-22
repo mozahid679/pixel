@@ -4,10 +4,14 @@
     <div class="space-y-10">
         <section class="my-10 text-center">
             <h1 class="text-4xl font-bold">Let's Find Your Next Job</h1>
-            <form class="mt-6" action="">
+            {{-- <form class="mt-6" action="">
                 <input class="w-full max-w-xl rounded-xl border-white/10 bg-white/5 px-5 py-4" id=" "
                     name="" type="text" placeholder="I'm looking for ...">
-            </form>
+            </form> --}}
+
+            <x-forms.form class="mx-auto mt-6 max-w-xl" action='/search'>
+                <x-forms.input name="q" :label="false" placeholder="I'm looking for ..." />
+            </x-forms.form>
         </section>
         <section>
             <x-section-heading> Featured Jobs </x-section-heading>
